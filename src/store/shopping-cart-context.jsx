@@ -2,7 +2,8 @@ import { createContext } from "react";
 
 export const CartContext = createContext({
   items: [], // empty default value to match the useState inside the App component
-  addItemsToCart: () => {} // empty dummy arrow function set as context default value
+  addItemsToCart: () => {}, // empty dummy arrow function set as context default value
+  updateCart: () => {}
 });
 
 // createContext is a react function that allows passing of data without the need of prop drilling

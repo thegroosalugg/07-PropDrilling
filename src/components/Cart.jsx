@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { CartContext } from "../store/shopping-cart-context";
 
-export default function Cart({ onUpdateItemQuantity }) {
-  const { items } = useContext(CartContext); // useContext is a react hook that allows us to access the value of the created context
+export default function Cart() {
+  const { items, updateCart } = useContext(CartContext); // useContext is a react hook that allows us to access the value of the created context
   // the value is stored in a constant and can therefore be destructured. Only the prop passed as an argument needs to be removed
 
   const totalPrice = items.reduce(
@@ -26,11 +26,11 @@ export default function Cart({ onUpdateItemQuantity }) {
                   <span> ({formattedPrice})</span>
                 </div>
                 <div className="cart-item-actions">
-                  <button onClick={() => onUpdateItemQuantity(item.id, -1)}>
+                  <button onClick={() => updateCart(item.id, -1)}>
                     -
                   </button>
                   <span>{item.quantity}</span>
-                  <button onClick={() => onUpdateItemQuantity(item.id, 1)}>
+                  <button onClick={() => updateCart(item.id, 1)}>
                     +
                   </button>
                 </div>

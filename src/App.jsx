@@ -69,21 +69,19 @@ function App() {
 
   const contextValue = {
     items: shoppingCart.items, // context items value is the value of our declared state at the beginninf
-    addItemsToCart: handleAddItemToCart // the add items to cart function can now be stored and passed as a prop
+    addItemsToCart: handleAddItemToCart, // the add items to cart function can now be stored and passed as a prop
+    updateCart: handleUpdateCartItemQuantity
   }
 
   return (
     // the app is wrapped in react's createContext function. Provider is a component property created by React
     // same default value set as in the Create Context file. In this case the same as the useState declared at the beginning
     <CartContext.Provider value={contextValue}>
-      <Header
-        cart={shoppingCart}
-        onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
-      />
+      <Header />
       <Shop>
         {DUMMY_PRODUCTS.map((product) => (
           <li key={product.id}>
-            <Product {...product} onAddToCart={handleAddItemToCart} />
+            <Product {...product} />
           </li>
         ))}
       </Shop>
@@ -92,3 +90,18 @@ function App() {
 }
 
 export default App;
+
+// an alternative to Context Provider is Consumer, which may appear in some older coder bases
+// it uses an an opening an closing tag, in between it dynamically {} outputs a function inside curly braces
+// the function carried out takes the context as a parameter and returns the React components inside the function
+
+{/* <CardContext.Consumer>
+      {(contextValue) => {
+        return (
+          <div>
+            <p>your React code</p>
+          </div>
+        )
+      }
+    }
+    </CardContext.Consumer> */}
