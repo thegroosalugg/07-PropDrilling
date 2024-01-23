@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import Header from './components/Header.jsx';
-import Shop from './components/Shop.jsx';
-import Product from './components/Product.jsx';
-import { DUMMY_PRODUCTS } from './dummy-products.js';
+import Header from "./components/Header.jsx";
+import Shop from "./components/Shop.jsx";
+import Product from "./components/Product.jsx";
+import { DUMMY_PRODUCTS } from "./dummy-products.js";
+import { CartContext } from "./store/shopping-cart-context.jsx";
 
 function App() {
   const [shoppingCart, setShoppingCart] = useState({
@@ -67,19 +68,21 @@ function App() {
   }
 
   return (
-    <>
+    // the app is wrapped in react's createContext function. Provider is a component property created by React
+    // same default value set as in the Create Context file
+    <CartContext.Provider value={{ items: [] }}>
       <Header
         cart={shoppingCart}
         onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
       />
       <Shop>
-      {DUMMY_PRODUCTS.map((product) => (
+        {DUMMY_PRODUCTS.map((product) => (
           <li key={product.id}>
             <Product {...product} onAddToCart={handleAddItemToCart} />
           </li>
         ))}
       </Shop>
-    </>
+    </CartContext.Provider>
   );
 }
 

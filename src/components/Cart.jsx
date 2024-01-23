@@ -1,4 +1,10 @@
-export default function Cart({ items, onUpdateItemQuantity }) {
+import { useContext } from "react";
+import { CartContext } from "../store/shopping-cart-context";
+
+export default function Cart({ onUpdateItemQuantity }) {
+  const { items } = useContext(CartContext); // useContext is a react hook that allows us to access the value of the created context
+  // the value is stored in a constant and can therefore be destructured. Only the prop passed as an argument needs to be removed
+
   const totalPrice = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
