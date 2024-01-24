@@ -14,7 +14,7 @@ export const CartContext = createContext({
 
 function ShoppingCartReducer(state, action) { // use reducer must take 2 arguments, the state as the 1st argument and the dispatcher as the 2nd
 
-  if (action.type === 'ADD_ITEM') {
+  if (action.type === "ADD_ITEM") {
     const updatedItems = [...state.items];
 
     const existingCartItemIndex = updatedItems.findIndex(
@@ -44,7 +44,7 @@ function ShoppingCartReducer(state, action) { // use reducer must take 2 argumen
     };
   }
 
-  if (action.type === 'UPDATE_CART') {
+  if (action.type === "UPDATE_CART") {
     const updatedItems = [...state.items];
     const updatedItemIndex = updatedItems.findIndex(
       (item) => item.id === action.payload.productId
@@ -68,7 +68,7 @@ function ShoppingCartReducer(state, action) { // use reducer must take 2 argumen
     };
   }
 
-  return state
+  return state;
 }
 
 // all the logic and state management in the app can also be migrated to the context app and used as a wrapper to pass along the children
@@ -86,12 +86,12 @@ export default function CartContextProvider({ children }) {
 
   function handleUpdateCartItemQuantity(productId, amount) {
     shoppingCartDispatch({
-      type: 'UPDATE_CART',
+      type: "UPDATE_CART",
       payload: {
         productId, // if key value pairs match in parameters, they can be declared once. So no need to declare 'productID: productID'
-        amount
-      }
-    })
+        amount,
+      },
+    });
   }
 
   const contextValue = {
